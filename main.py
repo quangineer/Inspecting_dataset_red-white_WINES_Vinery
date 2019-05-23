@@ -1,5 +1,6 @@
 import pandas as pd 
 import numpy as np 
+import matplotlib as plt
 
 red_data = pd.read_csv('winequality-red.csv', sep=';')
 white_data = pd.read_csv('winequality-white.csv', sep=';')
@@ -70,15 +71,37 @@ NewDataFrame = pd.read_csv('winequality_edited.csv')
 
 ######Index does not support mutable operations. This command below is error
 # NewDataFrame.columns[6]='change'
-# print (NewDataFrame)
+
 
 ###Change the columns name:
 New_list_of_columns = list(NewDataFrame.columns)
 New_list_of_columns[6] = 'Inclusive Sulfur Dioxide'
 NewDataFrame.columns = New_list_of_columns
-# print (NewDataFrame)
+
 
 ###Another BUT SHORTER way to change columns name by using rename command:
 red_data = red_data.rename(columns = {'total_sulfur-dioxide':'total_sulfur_dioxide'})
 
-print(NewDataFrame)
+# print(NewDataFrame)
+
+#histogram and scatterplot:
+FA = df['fixed_acidity']
+a = FA.hist()
+
+TSD = df['total_sulfur_dioxide']
+b = TSD.hist()
+
+PH = df['pH']
+c = PH.hist()
+
+AC = df['alcohol']
+d = AC.hist()
+
+e = df.plot.scatter(x='quality', y='volatile_acidity')
+
+f = df.plot.scatter(x='quality', y='residual_sugar')
+
+g = df.plot.scatter(x='quality', y='pH')
+
+h = df.plot.scatter(x='quality', y='alcohol')
+
