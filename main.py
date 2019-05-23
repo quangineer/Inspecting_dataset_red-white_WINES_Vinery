@@ -1,10 +1,11 @@
 import pandas as pd 
+import numpy as np 
 
 red_data = pd.read_csv('winequality-red.csv', sep=';')
 white_data = pd.read_csv('winequality-white.csv', sep=';')
 
 # print((red_data).info())
-print((red_data).describe())
+# print((red_data).describe())
 # print ((red_data).tail(5))
 # print ((red_data).head(5))
 
@@ -21,3 +22,6 @@ print((red_data).describe())
 
 # print (red_data.nunique())
 # print (white_data.nunique())
+
+print (red_data.shape[0])
+print (white_data.shape[0])
