@@ -47,6 +47,13 @@ white_data['color'] = color_white
 wine_df = red_data.append(white_data)
 # print (wine_df)
 
+#make a new index for wine_df
+wine_df = wine_df.reset_index()
+
+#drop the old index for wine_df
+wine_df = wine_df.drop(columns="index")
+# print (wine_df)
+
 wine_df.to_csv('winequality_edited.csv', index=False)
 # print (wine_df.describe())
 
@@ -55,12 +62,7 @@ wine_df.to_csv('winequality_edited.csv', index=False)
 #check the border index between red and white dataset to see how they merge
 # print (wine_df.iloc[1590:1609, :])
 
-#make a new index for wine_df
-# wine_df = wine_df.reset_index()
 
-#drop the old index for wine_df
-# wine_df = wine_df.drop(columns="index")
-# print (wine_df)
 
 #Create a new dataframe for 'winequality_edited.csv'
 NewDataFrame = pd.read_csv('winequality_edited.csv')
@@ -79,3 +81,4 @@ NewDataFrame.columns = New_list_of_columns
 ###Another BUT SHORTER way to change columns name by using rename command:
 red_data = red_data.rename(columns = {'total_sulfur-dioxide':'total_sulfur_dioxide'})
 
+print(NewDataFrame)
