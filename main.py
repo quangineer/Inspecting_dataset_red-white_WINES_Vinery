@@ -64,8 +64,18 @@ wine_df.to_csv('winequality_edited.csv', index=False)
 
 #Create a new dataframe for 'winequality_edited.csv'
 NewDataFrame = pd.read_csv('winequality_edited.csv')
-print (NewDataFrame)
+# print (NewDataFrame)
 
+######Index does not support mutable operations. This command below is error
+# NewDataFrame.columns[6]='change'
+# print (NewDataFrame)
 
+###Change the columns name:
+New_list_of_columns = list(NewDataFrame.columns)
+New_list_of_columns[6] = 'Inclusive Sulfur Dioxide'
+NewDataFrame.columns = New_list_of_columns
+# print (NewDataFrame)
 
+###Another BUT SHORTER way to change columns name by using rename command:
+red_data = red_data.rename(columns = {'total_sulfur-dioxide':'total_sulfur_dioxide'})
 
