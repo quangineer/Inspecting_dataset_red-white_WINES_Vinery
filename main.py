@@ -66,29 +66,29 @@ wine_df.to_csv('winequality_edited.csv', index=False)
 
 
 #Create a new dataframe for 'winequality_edited.csv'
-NewDataFrame = pd.read_csv('winequality_edited.csv')
-# print (NewDataFrame)
+df = pd.read_csv('winequality_edited.csv')
+# print (df)
 
 ######Index does not support mutable operations. This command below is error
-# NewDataFrame.columns[6]='change'
+# df.columns[6]='change'
 
 
 ###Change the columns name:
-New_list_of_columns = list(NewDataFrame.columns)
+New_list_of_columns = list(df.columns)
 New_list_of_columns[6] = 'Inclusive Sulfur Dioxide'
-NewDataFrame.columns = New_list_of_columns
+df.columns = New_list_of_columns
 
 
 ###Another BUT SHORTER way to change columns name by using rename command:
 red_data = red_data.rename(columns = {'total_sulfur-dioxide':'total_sulfur_dioxide'})
 
-# print(NewDataFrame)
+# print(df)
 
 #histogram and scatterplot:
-FA = df['fixed_acidity']
+FA = df['fixed acidity']
 a = FA.hist()
 
-TSD = df['total_sulfur_dioxide']
+TSD = df['Inclusive Sulfur Dioxide']
 b = TSD.hist()
 
 PH = df['pH']
@@ -97,11 +97,16 @@ c = PH.hist()
 AC = df['alcohol']
 d = AC.hist()
 
-e = df.plot.scatter(x='quality', y='volatile_acidity')
+e = df.plot.scatter(x='quality', y='volatile acidity')
 
-f = df.plot.scatter(x='quality', y='residual_sugar')
+f = df.plot.scatter(x='quality', y='residual sugar')
 
 g = df.plot.scatter(x='quality', y='pH')
 
 h = df.plot.scatter(x='quality', y='alcohol')
 
+#GroupBy:
+#group the data by color red and white to explore average quality factor each:
+# print (df.groupby('color')['quality'].mean())
+#group the data by color red and white and by quality to explore average pH factor each:
+print (df.groupby(['quality', 'color'], as_index=False)['pH'].mean())
