@@ -1,0 +1,14 @@
+Guide to Numpy:
+http://csc.ucdavis.edu/~chaos/courses/nlp/Software/NumPyBook.pdf
+
+Scipy history:
+https://scipy.github.io/old-wiki/pages/History_of_SciPy.html
+
+Winedataset:
+https://archive.ics.uci.edu/ml/datasets/Wine+Quality
+
+Dataset from UC Irvine:
+https://archive.ics.uci.edu/ml/index.php
+
+https://medium.com/analytics-and-data/become-a-pro-at-pandas-pythons-data-manipulation-library-264351b586b1
+https://jakevdp.github.io/PythonDataScienceHandbook/03.06-concat-and-append.html
