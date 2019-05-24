@@ -147,12 +147,26 @@ df.to_csv('winequality_edited.csv', index=False)
 ###Note to self: How to select a columns in a dataframe:
 #df.column_name or df['column_name']
 
+#Drawing conclusions using query:
+# Re-read the csv file and work with general info of csv file first.
+df.describe().alcohol
+df.head()
 
-low_alcohol = df.query('alcohol < 10.3')
+#Finding the median for alcohol column to prepare for a split:
+df.alcohol.median()
+
+#Select samples with alcohol content less than the median and greater than the median: 
+
+low_alcohol = df.query('alcohol <= 10.3')
 high_alcohol = df.query('alcohol > 10.3')
-print (low_alcohol.quality.count())
-print (high_alcohol.quality.count())
+# print (low_alcohol.quality.count())
+# print (high_alcohol.quality.count())
 # print (df.shape[0])
 
-A = df.alcohol.notnull()
+#Make sure no sample has Nal value in alcohol
+# A = df.alcohol.notnull()
 # print (A)
+
+#Calculate mean of each low and high alcohol:
+print (low_alcohol.quality.mean())
+print (high_alcohol.quality.mean())
