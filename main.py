@@ -145,7 +145,8 @@ df.groupby('acidity levels')['quality'].mean()
 df.to_csv('winequality_edited.csv', index=False)
 
 ###Note to self: How to select a columns in a dataframe:
-#df.column_name or df['column_name']
+#df.column_name or df['column_name'] # However, if you want to select more than one columns, 
+#you only can use : df[["column_name", "column_name"]]
 
 #Drawing conclusions using query:
 # Re-read the csv file and work with general info of csv file first.
@@ -167,6 +168,25 @@ high_alcohol = df.query('alcohol > 10.3')
 # A = df.alcohol.notnull()
 # print (A)
 
-#Calculate mean of each low and high alcohol:
-print (low_alcohol.quality.mean())
-print (high_alcohol.quality.mean())
+#Calculate mean of each low and high alcohol and answer the question of Do wines
+# with higher alcoholic content receive better ratings?
+# print (low_alcohol.quality.mean())
+# print (high_alcohol.quality.mean())
+
+#Get the median of residual_sugar:
+(df['residual sugar'].median())
+
+#select sample for residual sugar less and more than median:
+# low_sugar = df.query('residual sugar <= 3.0')
+# high_sugar = df.query('residual sugar > 3.0')
+low_sugar = df[df['residual sugar'] <= 3.0]
+high_sugar = df[df['residual sugar'] > 3.0]
+
+# num_samples1 = df.shape[0]
+# num_samples2 = low_sugar.quality.count() + high_sugar.quality.count()
+# print (num_samples1)
+# print (num_samples2)
+
+#get mean quality rating for low and high sugar to answer DO sweeter wines receive better ratings?
+print (low_sugar.quality.mean())
+print (high_sugar.quality.mean())
