@@ -1,6 +1,7 @@
 import pandas as pd 
 import numpy as np 
-import matplotlib as plt
+import matplotlib.pyplot as plt
+
 
 red_data = pd.read_csv('winequality-red.csv', sep=';')
 white_data = pd.read_csv('winequality-white.csv', sep=';')
@@ -154,7 +155,7 @@ df.describe().alcohol
 df.head()
 
 #Finding the median for alcohol column to prepare for a split:
-df.alcohol.median()
+median = df.alcohol.median()
 
 #Select samples with alcohol content less than the median and greater than the median: 
 
@@ -163,6 +164,11 @@ high_alcohol = df.query('alcohol > 10.3')
 # print (low_alcohol.quality.count())
 # print (high_alcohol.quality.count())
 # print (df.shape[0])
+
+###Another way to get the low_alcohol and high_alcohol is use query to select each group and get its mean quality
+# low_alcohol = df.query('alcohol <= {}'.format(median))
+# high_alcohol = df.query('alcohol > {}'.format(median))
+
 
 #Make sure no sample has Nal value in alcohol
 # A = df.alcohol.notnull()
@@ -174,12 +180,12 @@ high_alcohol = df.query('alcohol > 10.3')
 # print (high_alcohol.quality.mean())
 
 #Get the median of residual_sugar:
-(df['residual sugar'].median())
+median_of_sugar = df['residual sugar'].median()
 
 #select sample for residual sugar less and more than median:
-# low_sugar = df.query('residual sugar <= 3.0')
-# high_sugar = df.query('residual sugar > 3.0')
-low_sugar = df[df['residual sugar'] <= 3.0]
+# low_sugar = df.query('residual sugar <= 3.0') #OR low_sugar = df.query('residual_sugar <= {}'.format(median_of_sugar))
+# high_sugar = df.query('residual sugar > 3.0') #OR high_sugar = df.query('residual_sugar <= {}'.format(median_of_sugar))
+low_sugar = df[df['residual sugar'] <= 3.0] 
 high_sugar = df[df['residual sugar'] > 3.0]
 
 # num_samples1 = df.shape[0]
@@ -188,5 +194,37 @@ high_sugar = df[df['residual sugar'] > 3.0]
 # print (num_samples2)
 
 #get mean quality rating for low and high sugar to answer DO sweeter wines receive better ratings?
-print (low_sugar.quality.mean())
-print (high_sugar.quality.mean())
+# print (low_sugar.quality.mean())
+# print (high_sugar.quality.mean())
+
+
+
+### PLOTTING:
+
+# DO WINES WITH HIGHER ALCOHOL CONTENT RECEIVE BETTER RATINGS?
+
+# mean_quality_low = low_alcohol.quality.mean()
+# mean_quality_high = high_alcohol['quality'].mean()
+
+# Create a bar chart with proper labels
+# locations = [1, 2]
+# heights = [mean_quality_low, mean_quality_high]
+# labels = ['Low', 'High']
+# plt.bar(locations, heights, tick_label=labels)
+# plt.title('Average Quality Ratings by Alcohol Content')
+# plt.xlabel('Alcohol Content')
+# plt.ylabel('Average Quality Rating')
+# plt.show()
+
+# DO SWEETER WINES RECEIVE HIGHER RATINGS?
+mean_low_sugar = low_sugar.quality.mean()
+mean_high_sugar = high_sugar.quality.mean()
+
+locations = [1,2]
+heights = [mean_low_sugar, mean_high_sugar]
+labels = ['Low Sugar', 'High Sugar']
+plt.bar(locations, heights, tick_label=labels)
+plt.title('Average Quality Ratings by Sugar Level')
+plt.xlabel('Sugar Level')
+plt.ylabel('Average Quality Rating')
+plt.show()
