@@ -1,9 +1,9 @@
 import pandas as pd 
 import matplotlib.pyplot as plt 
 import numpy as np 
-# % matplotlib inline
-# import seabron as sns
-# sns.set_style('darkgrid')
+% matplotlib inline
+import seabron as sns
+sns.set_style('darkgrid')
 
 
 df = pd.read_csv('winequality_edited.csv')
@@ -44,5 +44,17 @@ ind = np.arange(len(red_proportions))   # The x locations for the groups
 
 width = 0.35 # the width of the bars
 
+# plot bars:
+red_bars = plt.bar(ind, red_proportions, width, color='r', alpha=.7, label='Red Wine')
+white_bars = plt.bar(ind + width, white_proportions, width, color='w', alpha=.7, label='White Wine')
 
+# title and labels:
+plt.ylabel('Proportion')
+plt.xlabel('Quality')
+plt.title('Proportion by Wine Color and Quality')
+locations = ind + width /2 #xtick locations
+labels = ['3', '4', '5', '6', '7', '8', '9'] #xtick labels
+plt.xticks(locations, labels)
 
+#legend
+plt.legend()
